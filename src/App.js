@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      num: 1
+    }
+    this.handleclick = this.handleclick.bind(this);
+  }
+
+
+
+  handleclick(){
+    
+    this.setState({
+      num: Math.floor(Math.random() * 10) + 1 
+    }) 
+  }
+  render(){
+    return (
+      <div className="App">
+          <h2>Number is {this.state.num}</h2>
+          {this.state.num === 7 && <h3>You WIN</h3>}
+          <button onClick={this.handleclick} className={this.state.num === 7 ? 'hide' : ''}>CLICK winner</button>
+      </div>
+    )
+  }
+  
 }
 
 export default App;
